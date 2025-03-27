@@ -27,7 +27,13 @@ var fromSpain = employeeList.Where(x => x.Country.Contains("Hiszpania")).ToList(
 var groupByCountry = employeeList.GroupBy(x => x.Country).Select(x => new { Country = x.Key, employee=x.ToList() }).ToList();
 
 
-
+var _groupByCountry = (from employee in employeeList
+                       group employee by employee.Country into grouped
+                       select new 
+                       { 
+                           Country = grouped.Key, 
+                           Employee = grouped.ToList() 
+                       }).ToList(); 
 
 
 
